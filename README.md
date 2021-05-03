@@ -1,1 +1,8 @@
-# Compra de item usando react native hooks
+# Loja
+
+## Utilizando:
+
+- Async Storage
+- React Native
+- Expo
+- React Hooks
