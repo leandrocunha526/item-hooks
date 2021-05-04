@@ -8,13 +8,6 @@ export default function Product(){
   const finishOrder = useRef(null);
   
   useEffect(() => {
-    async function saveStorage(){
-      await AsyncStorage.setItem('quantities', quantity);
-  }
-    saveStorage();
-  }, [quantity]);
-  
-  useEffect(() => {
     async function getStorage() {
       const productStorage = await AsyncStorage.getItem('quantities'); 
       if(productStorage){
@@ -23,6 +16,13 @@ export default function Product(){
     }
     getStorage();
   }, [])
+
+  useEffect(() => {
+    async function saveStorage(){
+      await AsyncStorage.setItem('quantities', quantity);
+  }
+    saveStorage();
+  }, [quantity]);
   
   function orderFocus(){
     finishOrder.current.focus();
@@ -63,10 +63,10 @@ export default function Product(){
           onPress={orderFocus}>FINALIZAR</Text>
       </TouchableHighlight>
         
-      <TouchableHighlight style={styles.orderButton}>
+      <TouchableHighlight style={styles.orderButton} ref={finishOrder}>
           <Text
           style={{ textAlign: 'center', color: '#fff', fontWeight: 'bold', fontSize: 14 }}
-          ref={finishOrder}><Icon name="shopping-cart" size={15} style={{ paddingRight: 10 }} color="white" />
+          ><Icon name="shopping-cart" size={15} style={{ paddingRight: 10 }} color="white" />
           Realizar Pedido
         </Text>
       </TouchableHighlight> 
@@ -141,7 +141,7 @@ const styles = StyleSheet.create({
     width: 250,
     height: 30,
     alignItems: 'center',
-    marginTop: 275,
+    marginTop: 380,
     backgroundColor: '#99d178',
     borderRadius: 8
   }
